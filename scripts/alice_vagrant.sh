@@ -15,5 +15,5 @@ vim +PluginInstall +qall
 
 # Configure git 
 git config --global user.name "Alice Yang"
-git config --global user.email alice@airtime.com
+git config --global user.email alice.yang@me.com
 git config --global core.editor vim
