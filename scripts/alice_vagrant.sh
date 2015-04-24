@@ -9,6 +9,7 @@ chsh -s /bin/zsh # will need to enter password here
 git clone https://github.com/aricearice/my-essentials.git ~/my-essentials
 cp -r ~/my-essentials/dotfiles/.vim* ~/
 cp -r ~/my-essentials/dotfiles/.zshrc ~/
+cp -r ~/my-essentials/dotfiles/.tmux.conf ~/
 # INstall vim plugins
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
