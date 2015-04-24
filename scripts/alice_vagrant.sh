@@ -12,3 +12,8 @@ cp -r ~/my-essentials/dotfiles/.zshrc ~/
 # INstall vim plugins
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
+
+# Configure git 
+git config --global user.name "Alice Yang"
+git config --global user.email alice@airtime.com
+git config --global core.editor vim
