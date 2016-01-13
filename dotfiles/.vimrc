@@ -17,7 +17,7 @@ set smartcase
 set incsearch
 set hlsearch
 set expandtab
-autocmd Filetype javascript setlocal shiftwidth=2 tabstop=2
+autocmd Filetype javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 ffs=unix
 autocmd Filetype python setlocal shiftwidth=4 tabstop=4
 autocmd Filetype html setlocal shiftwidth=2 tabstop=2
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
@@ -38,6 +38,9 @@ Plugin 'scrooloose/nerdtree'
 " SuperTab
 Plugin 'ervandew/supertab'
 
+" Syntastic
+Plugin 'scrooloose/syntastic'
+
 " vim-autoformat
 " https://github.com/Chiel92/vim-autoformat
 " Plugin 'Chiel92/vim-autoformat'
@@ -55,6 +58,9 @@ Plugin 'ervandew/supertab'
 " http://vimawesome.com/plugin/fugitive-vim
 " a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
+
+" editor config plugin for Vim
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -79,3 +85,16 @@ autocmd FileType html             let b:comment_leader = '<!-- '
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+set foldmethod=indent
+
+" Syntastic options for linting
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
