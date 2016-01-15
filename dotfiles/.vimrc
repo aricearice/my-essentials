@@ -2,14 +2,21 @@ set nocompatible
 
 filetype off
 
-
 syntax on
+
 colorscheme solarized
-if has('gui_running')
-    set background=light
-else
+
+" Colors let me know whether I'm in a VM
+if has("unix")
+  let s:uname = system("uname -s")
+  if s:uname == "Darwin\n"
     set background=dark
+    " Do Mac stuff here
+  else
+    set background=light
+  endif
 endif
+
 let g:solarized_termcolors = 256
 set nu
 set ignorecase
