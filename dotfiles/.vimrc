@@ -92,6 +92,9 @@ set foldmethod=indent
 " clipboard!
 set clipboard=unnamed
 
+" Make sure backspace works
+set backspace=2
+
 " Syntastic options for linting
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
