@@ -1,11 +1,16 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="wezm+"
+# check the operating system and set a different theme if not OS X
+if [[ $(uname) = 'Darwin' ]]; then
+  # Set name of the theme to load.
+  # Look in ~/.oh-my-zsh/themes/
+  # Optionally, if you set this to "random", it'll load a random theme each
+  # time that oh-my-zsh is loaded.
+  ZSH_THEME="wezm+"
+else 
+  ZSH_THEME="fisher"
+fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -79,3 +84,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias npm-exec='PATH=$(npm bin):$PATH'
+alias gdcw="git diff --color-words"
+alias gscw="git show --color-words"
+alias gbpull="git pull origin $( git rev-parse --abbrev-ref HEAD )"
+alias gbpush="git push origin $( git rev-parse --abbrev-ref HEAD )"
+alias gco="git checkout"
+alias gitcleanup="git branch --merged | grep -v "\\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d"
