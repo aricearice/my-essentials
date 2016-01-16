@@ -89,4 +89,5 @@ alias gscw="git show --color-words"
 alias gbpull="git pull origin $( git rev-parse --abbrev-ref HEAD )"
 alias gbpush="git push origin $( git rev-parse --abbrev-ref HEAD )"
 alias gco="git checkout"
-alias gitcleanup="git branch --merged | grep -v "\\*" | grep -v master | grep -v dev | xargs -n 1 git branch -d"
+alias gitcleanup="git branch --merged | grep -v \"\*\" | grep -v master | grep -v dev | xargs -n 1 git branch -d"
+
