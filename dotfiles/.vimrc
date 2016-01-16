@@ -24,7 +24,7 @@ set smartcase
 set incsearch
 set hlsearch
 set expandtab
-autocmd Filetype javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2 ffs=unix
+autocmd Filetype javascript,sh,vim setlocal shiftwidth=2 tabstop=2
 autocmd Filetype python setlocal shiftwidth=4 tabstop=4
 autocmd Filetype html setlocal shiftwidth=2 tabstop=2
 autocmd Filetype markdown setlocal shiftwidth=2 tabstop=2
@@ -48,26 +48,23 @@ Plugin 'ervandew/supertab'
 " Syntastic
 Plugin 'scrooloose/syntastic'
 
-" vim-autoformat
-" https://github.com/Chiel92/vim-autoformat
-" Plugin 'Chiel92/vim-autoformat'
-
 " surround.vim
 " https://github.com/tpope/vim-surround
-" Plugin 'tpope/vim-surround'
-
-" vim-go
-" https://github.com/fatih/vim-go
-" go syntax + auto complete
-" Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-surround'
 
 " fugitive.vim
 " http://vimawesome.com/plugin/fugitive-vim
 " a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
 
-" editor config plugin for Vim
-Plugin 'editorconfig/editorconfig-vim'
+" status line
+Plugin 'bling/vim-airline'
+
+" javascript syntax highlighting
+Plugin 'pangloss/vim-javascript'
+
+" Fuzzy file finder
+Plugin 'kien/ctrlp.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -93,6 +90,13 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
+" timeout
+set timeout timeoutlen=1000
+" map jj to escape key
+imap <silent> jj <Esc>
+" instead of map to ctrlp!
+nmap <silent> <Bslash> :CtrlP<CR>
+
 " fold everything by indentation
 set foldmethod=indent
 
@@ -102,7 +106,7 @@ set clipboard=unnamed
 " Make sure backspace works
 set backspace=2
 
-" Syntastic options for linting
+" ######## SYNTASTIC SETTINGS
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -112,3 +116,37 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
+
+
+" ######## CTRLP SETTINGS
+" ignore meh files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*,*/external/*
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$'
+  \ }
+
+
+
+" ######## AIRLINE SETTINGS
+
+" Show statusline
+set laststatus=2
+" Show full path
+set statusline+=%F
+" Set statusline color based on mode
+if version >= 700
+    au InsertEnter * hi StatusLine term=reverse ctermbg=Green gui=undercurl guibg=Green
+    au InsertLeave * hi StatusLine term=reverse ctermbg=DarkMagenta gui=bold,reverse
+endif
+" Default the statusline to green when entering Vim
+hi StatusLine guibg=Green ctermbg=Green
+" Airline settings
+let g:airline_theme = 'solarized'
+let g:airline_left_sep = '»'
+let g:airline_right_sep = '«'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tab_type = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+
