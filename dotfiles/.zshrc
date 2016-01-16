@@ -9,7 +9,7 @@ if [[ $(uname) = 'Darwin' ]]; then
   # time that oh-my-zsh is loaded.
   ZSH_THEME="wezm+"
 else 
-  ZSH_THEME="fishy"
+  ZSH_THEME="pygmalion"
 fi
 
 # Uncomment the following line to use case-sensitive completion.
