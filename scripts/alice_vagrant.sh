@@ -17,6 +17,4 @@ sudo npm install -g eslint
 sudo npm install -g eslint-plugin-filenames
 
 # Configure git 
-git config --global user.name "Alice Yang"
-git config --global user.email alice.yang@me.com
 git config --global core.editor vim
